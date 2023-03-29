@@ -1,0 +1,58 @@
+*:not(iframe, canvas, img, svg, video):not(svg *) {    
+    all: unset;    
+    display: revert;
+}
+
+/* navbar section */
+.navbar{
+    display: grid;
+    width: 100%;
+    list-style: none;
+    align-items: center;
+    grid-auto-flow: column;
+    font-size: 25px;
+    height: 80px;
+    grid-template-columns: 3fr 2fr;
+    box-shadow: 1px 1px 5px rgb(165, 165, 165);
+    background: linear-gradient(0.25turn, #001529, #00182e, #011d38);
+}
+
+.navbar h2 {
+    justify-self: left;
+    margin-left: 50px;
+    color: #EDF1D6;
+}
+
+
+.navbar-items{
+    display: grid;
+    list-style: none;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 2fr 2.5fr 2fr;
+    color: #EDF1D6;
+}
+
+.navbar-items li {
+    width:fit-content;
+    transition: transform 0.5s;
+}
+
+.navbar-items li:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 12px 2px #011425;
+}
+
+.photo-item {
+    pointer-events: none;
+    position: relative;
+}
+
+.photo-item img {
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:50%;
+    position:absolute;
+    right: 3px;
+    top: 0px;
+}

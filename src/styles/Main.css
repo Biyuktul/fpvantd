@@ -1,0 +1,74 @@
+.overview-container {
+    display: grid;
+    grid-template-rows: auto 2fr 1fr;
+    grid-template-columns: auto;
+    grid-template-areas: 
+        "card-container card-container"
+        "chart report"
+        "log-table log-table";
+    height: 100vh;
+    
+}
+
+.card-container {
+    grid-area: card-container;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    margin-right: 25px;
+}
+
+.chart-container2 {
+    grid-area: chart;
+    margin-top: 30px;
+    height: fit-content;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+.report-container2 {
+    grid-area: report;
+    margin-top: 30px;
+    width: auto;
+    height: fit-content;
+    margin-right: 45px;
+}
+
+.log-container {
+    width: 100%;
+    margin-top: 30px;
+    grid-area: log-table;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Card Section */
+.card {
+    display: grid;
+    justify-content: center;
+    height: 8rem;
+    width: 18rem;
+    border-radius: .3rem;
+    box-shadow: 5px 10px 25px 2px rgb(95, 95, 95);
+    transition: transform 0.3s ease;
+    text-align: center;
+    background-color: #001529;
+    color: aliceblue;
+}
+
+.card-header *{
+    font-size: 30px;
+}
+
+.card-header h1{
+    font-family: Montserrat;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-10px);
+}
+
+/* End of Card Section */
