@@ -1,7 +1,6 @@
 import EmployeeTable from './EmployeeTable';
-import AddButton from './AddButton';
+import PopupFormButton from './FormPopup';
 import PermissionBox from './PermissionBox';
-import { useState } from 'react';
 
 import '../styles/App.css';
 
@@ -40,7 +39,7 @@ function StaffsDashboard() {
                 <PermissionBox />
             </div>
             <div className='button-container'>
-                <AddButton>Add New Officer</AddButton>
+                <PopupFormButton text={"Add Officers"} formTitle={"New Officer Registration Form"}></PopupFormButton>
             </div>
       </div>
     );

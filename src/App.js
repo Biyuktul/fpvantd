@@ -1,14 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
-import Login from './Components/Login';
-import Sidebar from './Components/Sidebar';
+import { AdminDashboard } from './Modules/Admin';
+import { OfficerDashboard } from './Modules/Officer';
+
 import {BrowserRouter} from 'react-router-dom'
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Sidebar />
+        <OfficerDashboard />
       </div>
     </BrowserRouter>
   );

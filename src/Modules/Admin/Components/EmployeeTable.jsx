@@ -1,11 +1,14 @@
 import '../styles/EmployeeTable.css';
 import React, { useState } from "react";
 import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
-import Button from "./AddButton";
+import PopupFormButton from './FormPopup';
+import ConfirmPopup from './ConfirmPopup';
+import OfficerDetail from './OfficerDetailPopup';
 
 function EmployeeTable({ employees }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [selectedEmployee, setSelectedEmployee] = useState(null)
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
@@ -15,15 +18,6 @@ function EmployeeTable({ employees }) {
   const rowsPerPage = 7;
   const totalRows = employees.length;
   const totalPages = Math.ceil(totalRows / rowsPerPage);
-
-  function handleRowClick(employee) {
-    console.log(`Clicked on the eye for employee ${employee.name}`);
-    // Add any other logic here to handle the row click
-  }
-
-  function goToPage(pageNumber) {
-    setCurrentPage(pageNumber);
-  }
 
   function goToNextPage() {
     if (currentPage < totalPages) {
@@ -36,14 +30,6 @@ function EmployeeTable({ employees }) {
       setCurrentPage(currentPage - 1);
     }
   }
-
-  const handleEdit = (employee) => {
-    console.log("Edit button clicked for employee with name", employee.name);
-  };
-
-  const handleDelete = (employee) => {
-    console.log("Delete button clicked for employee with ID", employee.name);
-  };
 
 
   const startIndex = (currentPage - 1) * rowsPerPage;
@@ -95,25 +81,23 @@ function EmployeeTable({ employees }) {
               <td>{employee.department}</td>
               <td>{employee.salary}</td>
               <td>
-                <button
-                    onClick={() => handleEdit(employee)}
-                    className="edit-button">
-                    <FaEdit className="edit-icon" />
+                <button onClick={() => setSelectedEmployee(employee)}>
+                <PopupFormButton
+                    text={"Edit"}
+                    formTitle={"Edit Officer Form"} 
+                    selectedEmployee={employee}
+                />
                 </button>
               </td>
               
               <td>
-                <button
-                    onClick={() => handleDelete(employee)}
-                    className="delete-button">
-                    <FaTrash className="delete-icon" />
+                <button onClick={() => setSelectedEmployee(employee)}>
+                      <ConfirmPopup selectedEmployee={employee} />
                 </button>
               </td>
               <td>
-                <button
-                    onClick={() => handleRowClick(employee)}
-                    className="view-button">
-                    <FaEye className="eye-icon" />
+                <button onClick={() => setSelectedEmployee(employee)}>
+                    <OfficerDetail selectedEmployee={employee} />
                 </button>
               </td>
             </tr>
