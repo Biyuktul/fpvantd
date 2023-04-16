@@ -1,6 +1,7 @@
-import { Table } from 'antd';
+import { Table, Input } from 'antd';
 import { useState } from 'react';
 import CaseDetailModal from './CasePopup';
+import CaseFormPopup from './CaseFormPopup'
 
 const offense = [
   {
@@ -62,10 +63,10 @@ const case_info = [
 const CaseTable = ({ data }) => {
   const [visible, setVisible] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleClick = (record) => {
     setVisible(true);
-    console.log(record);
     setSelectedRowData(record);
   };
 
@@ -73,6 +74,16 @@ const CaseTable = ({ data }) => {
     setVisible(false);
     setSelectedRowData(null);
   };
+
+  const handleSearch = (value) => {
+    setSearchQuery(value);
+  };
+
+  const filteredData = data.filter((item) =>
+    item.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.priority.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.status.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const columns = [
     { title: 'Case ID', dataIndex: 'id' },
@@ -86,8 +97,20 @@ const CaseTable = ({ data }) => {
 
   return (
     <>
+      <div className="mb-4">
+  <div className="relative rounded-md shadow-sm w-1/2 ml-10 mt-10">
+    <input
+      className="block w-full pl-3 pr-10 py-2 text-sm leading-5 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out"
+      type="search"
+      placeholder="Search by case type, priority, or status"
+      onChange={(e) => handleSearch(e.target.value)}
+    />
+  </div>
+</div>
+
+      <CaseFormPopup />
       <Table
-        dataSource={data}
+        dataSource={filteredData}
         columns={columns}
         onRow={(record, rowIndex) => {
           return {
@@ -98,20 +121,18 @@ const CaseTable = ({ data }) => {
         }}
         className='w-2/3'
       />
-
-    <CaseDetailModal
-            title="Case Detail"
-            visible={visible}
-            handleCancel={handleCancel}
-            selectedRowData={selectedRowData}
-            offense={offense}
-            defendant={defendant}
-            officer={officer}
-            case_info={case_info}
-    />
+      <CaseDetailModal
+        title="Case Detail"
+        visible={visible}
+        handleCancel={handleCancel}
+        selectedRowData={selectedRowData}
+        offense={offense}
+        defendant={defendant}
+        officer={officer}
+        case_info={case_info}
+      />
     </>
   );
 };
-
 
 export default CaseTable;

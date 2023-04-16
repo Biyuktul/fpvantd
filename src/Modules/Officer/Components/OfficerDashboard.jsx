@@ -1,14 +1,18 @@
 import AppBar from "../../Admin/Components/AppBar";
 import Sidebar from "../../Admin/Components/Sidebar";
-import Main from "./Main";
 import { Layout } from 'antd';
 import { useState } from "react";
 import {IoDocumentAttach} from 'react-icons/io5'
 import { TbLogout} from 'react-icons/tb'
 import {FcProcess} from 'react-icons/fc'
+import {GiPoliceCar} from 'react-icons/gi'
 import { PieChartOutlined } from '@ant-design/icons';
 import {CgProfile} from 'react-icons/cg'
-import CaseTable from "./CaseTable";
+import {HiOutlineDocumentReport} from 'react-icons/hi'
+import ReportList from './ReportPage'
+import MyProfile from "./Profile";
+import AppBarMU from "./AppBarMU";
+import Incidents from "./Incident";
 
 const { Content, Footer } = Layout;
 
@@ -58,20 +62,30 @@ const items = [
         {
           key: '3',
           icon: <FcProcess />,
-          label: 'Ongoing Cases',
-          link: '/ongoing_cases'
+          label: 'Criminal Records',
+          link: '/criminal_records'
         },
         {
           key: '4',
+          icon: <GiPoliceCar />,
+          label: 'Incidents',
+          link: '/incidents'
+        },
+        {
+          key: '5',
+          icon: <HiOutlineDocumentReport />,
+          label: 'Reports',
+          link: '/reports'
+        },
+        {
+          key: '6',
           icon: <CgProfile />,
-          label: 'My Profile',
-          link: '/profile'
+          label: <MyProfile />,
         },
         {
           key: '7',
           icon: <TbLogout />,
           label: 'Logout',
-          link: '/logout'
         },
 
       ];
@@ -87,10 +101,10 @@ const OfficerDashboard = () => {
           <Layout style={{ minHeight: '100vh' }}>
             <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} items={items}/>
             <Layout className="site-layout">
-              <AppBar />
+              <AppBarMU />
               <Content style={mainStyle}>
                 <div style={{ padding: 0, minHeight: 360 }}>
-                  <CaseTable data={data}/>
+                  {<Incidents />}
                 </div>
               </Content>
               <Footer style={{ textAlign: 'center', backgroundColor: '#002140',height: 40, marginTop: 70, color: "white"}}>
