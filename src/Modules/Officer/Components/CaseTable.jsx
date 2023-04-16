@@ -64,6 +64,12 @@ const CaseTable = ({ data }) => {
   const [visible, setVisible] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  
+  
+  const handleExport = () => {
+    // Add export functionality here
+    console.log('Export data');
+  };
 
   const handleClick = (record) => {
     setVisible(true);
@@ -80,10 +86,11 @@ const CaseTable = ({ data }) => {
   };
 
   const filteredData = data.filter((item) =>
-    item.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.priority.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.status.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  (item.type?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+  (item.priority?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+  (item.status?.toLowerCase() || '').includes(searchQuery.toLowerCase())
+);
+
 
   const columns = [
     { title: 'Case ID', dataIndex: 'id' },
@@ -97,21 +104,23 @@ const CaseTable = ({ data }) => {
 
   return (
     <>
-      <div className="mb-4">
-  <div className="relative rounded-md shadow-sm w-1/2 ml-10 mt-10">
-    <input
-      className="block w-full pl-3 pr-10 py-2 text-sm leading-5 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out"
-      type="search"
-      placeholder="Search by case type, priority, or status"
-      onChange={(e) => handleSearch(e.target.value)}
-    />
-  </div>
-</div>
+    <div className="mb-4 flex">
+    <div className="relative rounded-md shadow-sm w-1/2 justify-center">
+      <input
+        className="block w-full mt-5 pl-3 pr-10 py-2 text-sm leading-5 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out"
+        type="search"
+        placeholder="Search by case type, priority, or status"
+        onChange={(e) => handleSearch(e.target.value)}
+      />
 
+    </div>
       <CaseFormPopup />
+    </div>
+
       <Table
         dataSource={filteredData}
         columns={columns}
+        style={{width: '100%'}}
         onRow={(record, rowIndex) => {
           return {
             onClick: () => {
@@ -120,6 +129,9 @@ const CaseTable = ({ data }) => {
           };
         }}
         className='w-2/3'
+        pagination={{
+          pageSize: 8,
+        }}
       />
       <CaseDetailModal
         title="Case Detail"

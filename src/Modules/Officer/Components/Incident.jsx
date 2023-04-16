@@ -3,6 +3,7 @@ import { Table, Button, Input, Select, Tag, Popover, Form, InputNumber, Modal } 
 import { DatePicker, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import ReportTable from './ReportTable';
+import MapComponent from './Map';
 const { Option } = Select;
 
 const Incidents = () => {
@@ -90,6 +91,9 @@ const Incidents = () => {
     setDetailVisible(false);
   }; 
 
+  const handleExport = () => {
+    // do some operation here
+  }
 	const handleOk = (values) => {
     const newIncident = {
       caseType: values.caseType,
@@ -221,24 +225,41 @@ const Incidents = () => {
     
       return (
         <div className="flex flex-col h-full">
-      <div className="mb-4 flex items-center justify-between w-1/2 justify-center">
+      <div className="mb-4 flex items-center w-1/2 justify-center">
         <Input.Search
           placeholder="Search by case type"
           allowClear 
           onChange={(e) => handleSearch(e.target.value)} 
-          style={{width: 350}}
+          style={{width: 450, marginTop: 20}}
         />
         <Popover content={content} title="Add Incident" trigger="click" visible={addVisible} onVisibleChange={handleVisibleChange}>
-          <Button icon={<PlusOutlined />} />
+          <Button 
+            type={'primary'} 
+            icon={<PlusOutlined />} 
+            style={{width: '50px', 
+            backgroundColor: '#1677ff', 
+            marginTop: 20,
+            marginLeft: 10
+          }}
+          />
+
         </Popover>
       </div>
-      <div className="flex-grow">
+      <div className="flex-grow mr-15">
         <Table dataSource={filteredData} columns={columns} onRow={(record) => ({ onClick: () => handleRowClick(record) })} />
-        <ReportTable />
+          <MapComponent />
       </div>
 
       {selectedIncident && (
-        <Modal visible={detailVisible} onCancel={handleModalClose} footer={null}>
+        <Modal 
+          visible={detailVisible} 
+          onCancel={handleModalClose} 
+          footer={[
+            <Button key="export" type="primary" onClick={handleExport} style={{backgroundColor: '#1677ff'}}>
+              Export
+            </Button>,
+          ]}
+          >
           <h2>Incident Details</h2>
           <p>Icident Type: {selectedIncident.caseType}</p>
           <p>Status: {selectedIncident.status}</p>

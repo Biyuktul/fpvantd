@@ -1,6 +1,7 @@
 import { Button, Form, Input, Popover } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useState } from 'react';
+import { PlusOutlined } from '@ant-design/icons';
 
 
 const AddCase = () => {
@@ -85,8 +86,8 @@ const content = (
       );
   
   return (
-    <div style={{ position: 'relative' }}>
-      <div style={{ marginLeft: 200, whiteSpace: 'nowrap' }}>
+    <div style={{ position: 'relative' }} className='mt-5`A'    aria-activedescendant='A23'>
+      <div style={{ marginLeft: 100, whiteSpace: 'nowrap' }}>
         <Popover
           placement="bottom"
           title="New Case Registration Form"
@@ -97,7 +98,7 @@ const content = (
           destroyTooltipOnHide={true}
           overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
         >
-          <Button>Open Form</Button>
+        <Button icon={<PlusOutlined />} style={{marginTop: '20px', backgroundColor: '#1677ff', width: '50px', }}/>
         </Popover>
       </div>
       {visible && <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, left: 0 }} />}

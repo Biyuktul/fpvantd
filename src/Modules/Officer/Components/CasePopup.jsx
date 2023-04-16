@@ -1,13 +1,21 @@
-import { Modal, Table } from 'antd';
+import { Modal, Table, Button } from 'antd';
 
 const CaseDetailModal = ({ visible, handleCancel, case_info, offense, defendant, officer, selectedRowData  }) => {
+
+  const handleExport = () => {
+    //do some operation
+  }
   return (
         <Modal
         title="Case Detail"
         visible={visible}
         onCancel={handleCancel}
         style={{ maxWidth: '100%', minWidth: '70%' }}
-        footer={null}
+        footer={[
+          <Button key="export" type="primary" onClick={handleExport} style={{backgroundColor: '#1677ff'}}>
+            Export
+          </Button>,
+        ]}
       >
         <div 
                 style={{

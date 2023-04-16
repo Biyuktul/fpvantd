@@ -61,9 +61,6 @@ const ReportTable = () => {
     <Table 
       columns={columns} 
       dataSource={data} 
-      pagination={{
-        pageSize: 5,
-      }}
       title={() => (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>

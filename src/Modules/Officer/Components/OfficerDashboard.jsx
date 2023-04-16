@@ -13,38 +13,12 @@ import ReportList from './ReportPage'
 import MyProfile from "./Profile";
 import AppBarMU from "./AppBarMU";
 import Incidents from "./Incident";
+import Main from "./Main";
+import CaseTable from "./CaseTable";
 
 const { Content, Footer } = Layout;
 
-const data = [
-  { 
-    id: 1,
-    type: 'Body Related',
-    date: '12/10/2008',
-    priority: 'High', 
-    status: 'in progress',
-    team: '223344',
-    description: 'some description about the case'
-  },
-  { 
-    id: 2, 
-    type: 'Body Related', 
-    date: '12/10/2008', 
-    priority: 'High', 
-    status: 'in progress', 
-    team: '223344',
-    description: 'some description about the case'
-  },
-  { 
-    id: 3, 
-    type: 'Property Related', 
-    date: '12/10/2008', 
-    priority: 'High', 
-    status: 'in progress', 
-    team: '223344',
-    description: 'some description about the case'
-  },
-];
+
 
 const items = [
         {
@@ -104,7 +78,7 @@ const OfficerDashboard = () => {
               <AppBarMU />
               <Content style={mainStyle}>
                 <div style={{ padding: 0, minHeight: 360 }}>
-                  {<Incidents />}
+                  {<Main />}
                 </div>
               </Content>
               <Footer style={{ textAlign: 'center', backgroundColor: '#002140',height: 40, marginTop: 70, color: "white"}}>
