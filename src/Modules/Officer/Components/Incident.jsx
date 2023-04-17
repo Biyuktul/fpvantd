@@ -1,10 +1,8 @@
-import { useState } from 'react';
-import { Table, Button, Input, Select, Tag, Popover, Form, InputNumber, Modal } from 'antd';
-import { DatePicker, Row, Col } from 'antd';
+import { useState, useEffect } from 'react';
+import { Table, Button, Input, Select, Tag, Popover, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import ReportTable from './ReportTable';
 import MapComponent from './Map';
-const { Option } = Select;
+import NewIncident from './NewIncident';
 
 const Incidents = () => {
   const [incidents, setIncidents] = useState([]);
@@ -13,7 +11,31 @@ const Incidents = () => {
   const [selectedIncident, setSelectedIncident] = useState(null);
 	const [addVisible, setAddVisible] = useState(false);
   const [detailVisible, setDetailVisible] = useState(false);
-	
+  const [position, setPosition] = useState([9.0222, 38.7468]);
+  const [location, setLocation] = useState('Addis Ababa');
+
+  const apiKey = '47a1a977c1be42aab4956e1a035278f0';
+
+  const getLocationCoordinates = (location) => {
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(location)}, Addis Ababa, Ethiopia&key=${apiKey}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (data.results[0] && data.results[0].geometry) {
+          const { lat, lng } = data.results[0].geometry;
+          console.log(`${lat} ${lng}`)
+          setPosition([lat, lng]);
+        } else {
+          console.log("no location found")
+        }
+        
+        
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   
   const handleRowClick = (incident) => {
     setSelectedIncident(incident);
@@ -24,21 +46,21 @@ const Incidents = () => {
 	{
 		id: '1',
 		type: 'Assault',
-		location: 'New York',
+		location: 'Unity University',
 		date: '2023-04-15',
 		status: 'Open',
 	},
 	{
 		id: '2',
 		type: 'Robbery',
-		location: 'Los Angeles',
+		location: 'Arat Kilo',
 		date: '2023-04-14',
 		status: 'Closed',
 	},
 	{
 		id: '3',
 		type: 'Burglary',
-		location: 'Chicago',
+		location: 'Kolfe Keranio',
 		date: '2023-04-13',
 		status: 'Open',
 	},
@@ -59,6 +81,8 @@ const Incidents = () => {
 		title: 'Location',
 		dataIndex: 'location',
 		key: 'location',
+    render: (text, record) => <a onClick={() => handleLocationClick(record)}>{text}</a>,
+
 	},
 	{
 		title: 'Date',
@@ -80,9 +104,9 @@ const Incidents = () => {
 		},
 		],
 		onFilter: (value, record) => record.status === value,
-		render: (status) => {
+		render: (status, text, record) => {
 		const color = status === 'Open' ? 'green' : 'volcano';
-		return <Tag color={color}>{status}</Tag>;
+		return <Tag color={color} onClick={() => handleLocationClick(record)} >{status}</Tag>;
 		},
 	},
 	];
@@ -125,6 +149,13 @@ const Incidents = () => {
   
   };
 
+  const handleLocationClick = (record) => {
+    getLocationCoordinates(record.location)
+    // const { latitude, longitude } = record.location;
+    // setPosition([latitude, longitude]);
+    // console.log(record)
+  };
+
 	const handleSearch = (value) => {
 		setSearchText(value);
 	};
@@ -140,86 +171,11 @@ const Incidents = () => {
   	});
 
   const content = (
-        <Form layout="vertical" onFinish={handleOk}>
-          <Row gutter={24}>
-    <Col span={12}>
-      <Form.Item label="Type" name="caseType" rules={[{ required: true, message: 'Please enter case type' }]}>
-        <Input placeholder="Enter case type" />
-      </Form.Item>
-    </Col>
-    <Col span={12}>
-      <Form.Item label="Status" name="status" rules={[{ required: true, message: 'Please select status' }]}>
-        <Select defaultValue="Open">
-          <Option value="Open">Open</Option>
-          <Option value="Closed">Closed</Option>
-        </Select>
-      </Form.Item>
-    </Col>
-  </Row>
-  <Row gutter={24}>
-    <Col span={12}>
-      <Form.Item label="Priority" name="priority" rules={[{ required: true, message: 'Please enter priority' }]}>
-        <InputNumber min={1} max={10} />
-      </Form.Item>
-    </Col>
-    <Col span={12}>
-      <Form.Item label="Date" name="date" rules={[{ required: true, message: 'Please select date' }]}>
-        <DatePicker />
-      </Form.Item>
-    </Col>
-  </Row>
-  <Row gutter={24}>
-    <Col span={24}>
-      <Form.Item label="Description" name="description" rules={[{ required: true, message: 'Please enter description' }]}>
-        <Input.TextArea rows={4} placeholder="Enter description" />
-      </Form.Item>
-    </Col>
-  </Row>
-  <Row gutter={24}>
-    <Col span={12}>
-      <Form.Item label="Victims">
-        <Input.Group compact>
-          <Form.Item name="victimName" noStyle>
-            <Input placeholder="Name" />
-          </Form.Item>
-          <Form.Item name="victimAge" noStyle>
-            <InputNumber placeholder="Age" />
-          </Form.Item>
-          <Form.Item name="victimGender" noStyle>
-            <Input placeholder="Gender" />
-          </Form.Item>
-          <Form.Item name="victimContact" noStyle>
-            <Input placeholder="Contact information" />
-          </Form.Item>
-        </Input.Group>
-      </Form.Item>
-    </Col>
-    <Col span={12}>
-      <Form.Item label="Witnesses">
-        <Input.Group compact>
-          <Form.Item name="witnessName" noStyle>
-            <Input placeholder="Name" />
-          </Form.Item>
-          <Form.Item name="witnessAge" noStyle>
-            <InputNumber placeholder="Age" />
-          </Form.Item>
-          <Form.Item name="witnessGender" noStyle>
-            <Input placeholder="Gender" />
-          </Form.Item>
-          <Form.Item name="witnessContact" noStyle>
-            <Input placeholder="Contact information" />
-          </Form.Item>
-          <Form.Item name="witnessStatement" noStyle>
-            <Input.TextArea rows={4} placeholder="Witness statement" />
-          </Form.Item>
-        </Input.Group>
-      </Form.Item>
-    </Col>
-  </Row>
-          <Form.Item>
-            <Button htmlType="submit">Submit</Button>
-          </Form.Item>
-        </Form>
+        <NewIncident 
+        setIncidents={setIncidents}
+        setAddVisible={setAddVisible}
+        incidents={incidents}
+        handleOk={handleOk}/>
       );
       
     
@@ -242,12 +198,19 @@ const Incidents = () => {
             marginLeft: 10
           }}
           />
-
         </Popover>
       </div>
       <div className="flex-grow mr-15">
-        <Table dataSource={filteredData} columns={columns} onRow={(record) => ({ onClick: () => handleRowClick(record) })} />
-          <MapComponent />
+        <Table 
+          dataSource={filteredData}
+          columns={columns}
+          onRow={(record) => ({ onClick: ({target}) => {
+            if (target.tagName !== 'A') { // check if the clicked element is not an anchor tag
+              handleRowClick(record);
+            }
+          }
+          })} />
+          <MapComponent position={position} />
       </div>
 
       {selectedIncident && (

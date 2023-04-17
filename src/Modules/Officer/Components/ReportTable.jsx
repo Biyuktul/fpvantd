@@ -41,6 +41,42 @@ const data = [
     dateSent: '2022-01-02',
     report: 'Jane Smith',
   },
+  {
+    key: '2',
+    id: 'RPT002',
+    dateSent: '2022-01-02',
+    report: 'Jane Smith',
+  },
+  {
+    key: '2',
+    id: 'RPT002',
+    dateSent: '2022-01-02',
+    report: 'Jane Smith',
+  },
+  {
+    key: '2',
+    id: 'RPT002',
+    dateSent: '2022-01-02',
+    report: 'Jane Smith',
+  },
+  {
+    key: '2',
+    id: 'RPT002',
+    dateSent: '2022-01-02',
+    report: 'Jane Smith',
+  },
+  {
+    key: '2',
+    id: 'RPT002',
+    dateSent: '2022-01-02',
+    report: 'Jane Smith',
+  },
+  {
+    key: '2',
+    id: 'RPT002',
+    dateSent: '2022-01-02',
+    report: 'Jane Smith',
+  },
   // Add more data here
 ];
 
@@ -61,6 +97,9 @@ const ReportTable = () => {
     <Table 
       columns={columns} 
       dataSource={data} 
+      pagination={{
+        pageSize: 5,
+      }}
       title={() => (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>

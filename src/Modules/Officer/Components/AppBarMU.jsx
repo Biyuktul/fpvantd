@@ -2,6 +2,8 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import { BellOutlined, MessageOutlined } from '@ant-design/icons';
+
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -15,6 +17,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import IconPopover from './NotificationPopover';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -175,7 +178,7 @@ export default function AppBarMU() {
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
-                <MailIcon />
+              <IconPopover title={"Messages"} content={"Message List"} Icon={<MessageOutlined />}/>
               </Badge>
             </IconButton>
             <IconButton
@@ -184,7 +187,7 @@ export default function AppBarMU() {
               color="inherit"
             >
               <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+                <IconPopover title={"Notifications"} content={"Notif'n List"} Icon={<BellOutlined />}/>
               </Badge>
             </IconButton>
             <Typography
