@@ -2,18 +2,17 @@ import { useState, useEffect } from 'react';
 import { Table, Button, Input, Select, Tag, Popover, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import MapComponent from './Map';
-import NewIncident from './NewIncident';
-
+import IncidentsTable from './IncidentsTable'
 const Incidents = () => {
   const [incidents, setIncidents] = useState([]);
-	const [searchText, setSearchText] = useState('');
 	const [statusFilter, setStatusFilter] = useState('All');
-  const [selectedIncident, setSelectedIncident] = useState(null);
-	const [addVisible, setAddVisible] = useState(false);
-  const [detailVisible, setDetailVisible] = useState(false);
   const [position, setPosition] = useState([9.0222, 38.7468]);
   const [location, setLocation] = useState('Addis Ababa');
+  const [detailVisible, setDetailVisible] = useState(false);
+  const [selectedIncident, setSelectedIncident] = useState(null);
+  const [addVisible, setAddVisible] = useState(false);
 
+  
   const apiKey = '47a1a977c1be42aab4956e1a035278f0';
 
   const getLocationCoordinates = (location) => {
@@ -37,10 +36,7 @@ const Incidents = () => {
   }
 
   
-  const handleRowClick = (incident) => {
-    setSelectedIncident(incident);
-    setDetailVisible(true);
-  };
+  
 
 	const data = [
 	{
@@ -64,57 +60,76 @@ const Incidents = () => {
 		date: '2023-04-13',
 		status: 'Open',
 	},
+  {
+		id: '4',
+		type: 'Assault',
+		location: 'Unity University',
+		date: '2023-04-15',
+		status: 'Open',
+	},
+	{
+		id: '5',
+		type: 'Robbery',
+		location: 'Arat Kilo',
+		date: '2023-04-14',
+		status: 'Closed',
+	},
+	{
+		id: '6',
+		type: 'Burglary',
+		location: 'Kolfe Keranio',
+		date: '2023-04-13',
+		status: 'Open',
+	},
+  {
+		id: '7',
+		type: 'Assault',
+		location: 'Unity University',
+		date: '2023-04-15',
+		status: 'Open',
+	},
+	{
+		id: '8',
+		type: 'Robbery',
+		location: 'Arat Kilo',
+		date: '2023-04-14',
+		status: 'Closed',
+	},
+	{
+		id: '9',
+		type: 'Burglary',
+		location: 'Kolfe Keranio',
+		date: '2023-04-13',
+		status: 'Open',
+	},
+  {
+		id: '10',
+		type: 'Assault',
+		location: 'Unity University',
+		date: '2023-04-15',
+		status: 'Open',
+	},
+	{
+		id: '11',
+		type: 'Robbery',
+		location: 'Arat Kilo',
+		date: '2023-04-14',
+		status: 'Closed',
+	},
+	{
+		id: '12',
+		type: 'Burglary',
+		location: 'Kolfe Keranio',
+		date: '2023-04-13',
+		status: 'Open',
+	},
 	];
 
-	const columns = [
-	{
-		title: 'ID',
-		dataIndex: 'id',
-		key: 'id',
-	},
-	{
-		title: 'Type',
-		dataIndex: 'type',
-		key: 'type',
-	},
-	{
-		title: 'Location',
-		dataIndex: 'location',
-		key: 'location',
-    render: (text, record) => <a onClick={() => handleLocationClick(record)}>{text}</a>,
-
-	},
-	{
-		title: 'Date',
-		dataIndex: 'date',
-		key: 'date',
-	},
-	{
-		title: 'Status',
-		dataIndex: 'status',
-		key: 'status',
-		filters: [
-		{
-			text: 'Open',
-			value: 'Open',
-		},
-		{
-			text: 'Closed',
-			value: 'Closed',
-		},
-		],
-		onFilter: (value, record) => record.status === value,
-		render: (status, text, record) => {
-		const color = status === 'Open' ? 'green' : 'volcano';
-		return <Tag color={color} onClick={() => handleLocationClick(record)} >{status}</Tag>;
-		},
-	},
-	];
   const handleModalClose = () => {
     setSelectedIncident(null);
     setDetailVisible(false);
-  }; 
-
+  };
+  
   const handleExport = () => {
     // do some operation here
   }
@@ -151,66 +166,24 @@ const Incidents = () => {
 
   const handleLocationClick = (record) => {
     getLocationCoordinates(record.location)
-    // const { latitude, longitude } = record.location;
-    // setPosition([latitude, longitude]);
-    // console.log(record)
   };
-
-	const handleSearch = (value) => {
-		setSearchText(value);
-	};
-	const handleVisibleChange = (visible) => {
-		setAddVisible(visible);
-	};
-
-
-  	const filteredData = data.filter((record) => {
-		const caseType = record.type.toLowerCase();
-		const search = searchText.toLowerCase();
-		return caseType.includes(search) && (statusFilter === 'All' || record.status === statusFilter);
-  	});
-
-  const content = (
-        <NewIncident 
-        setIncidents={setIncidents}
-        setAddVisible={setAddVisible}
-        incidents={incidents}
-        handleOk={handleOk}/>
-      );
-      
     
       return (
         <div className="flex flex-col h-full">
-      <div className="mb-4 flex items-center w-1/2 justify-center">
-        <Input.Search
-          placeholder="Search by case type"
-          allowClear 
-          onChange={(e) => handleSearch(e.target.value)} 
-          style={{width: 450, marginTop: 20}}
-        />
-        <Popover content={content} title="Add Incident" trigger="click" visible={addVisible} onVisibleChange={handleVisibleChange}>
-          <Button 
-            type={'primary'} 
-            icon={<PlusOutlined />} 
-            style={{width: '50px', 
-            backgroundColor: '#1677ff', 
-            marginTop: 20,
-            marginLeft: 10
-          }}
-          />
-        </Popover>
-      </div>
       <div className="flex-grow mr-15">
-        <Table 
-          dataSource={filteredData}
-          columns={columns}
-          onRow={(record) => ({ onClick: ({target}) => {
-            if (target.tagName !== 'A') { // check if the clicked element is not an anchor tag
-              handleRowClick(record);
-            }
-          }
-          })} />
-          <MapComponent position={position} />
+        <IncidentsTable 
+          incidents={data}
+          setIncidents={setIncidents}
+          handleLocationClick={handleLocationClick}
+          location={location}
+          setSelectedIncident={setSelectedIncident}
+          setDetailVisible={setDetailVisible} 
+          setAddVisible={setAddVisible}
+          addVisible={addVisible}
+          statusFilter={statusFilter}
+          handleOk={handleOk}
+        />
+        <MapComponent position={position} />
       </div>
 
       {selectedIncident && (

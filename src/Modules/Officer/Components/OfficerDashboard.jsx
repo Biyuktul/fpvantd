@@ -74,7 +74,7 @@ const OfficerDashboard = () => {
         return (
           <Layout style={{ minHeight: '100vh' }}>
             <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} items={items}/>
-            <Layout className="site-layout">
+            <Layout className="site-layout" style={{backgroundColor: '#D8D8FF'}}>
               <AppBarMU />
               <Content style={mainStyle}>
                 <div style={{ padding: 0, minHeight: 360 }}>
