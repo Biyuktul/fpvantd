@@ -1,12 +1,19 @@
-import { Popover } from 'antd';
+import { Popover, Divider } from 'antd';
 
 import React from 'react'
 
-function IconPopover({title, content, Icon}) {
+function IconPopover({title, data, Icon}) {
   return (
     <Popover 
-        content={content}
-        title={title}
+      title={title}
+      content={
+        data.map((item, index) => (
+          <div key={index}>
+            {item}
+            {index !== data.length - 1 && <Divider style={{ margin: '8px 0', backgroundColor: 'lightGray' }}/>}
+          </div>
+        ))
+      }
     >
         {Icon}
     </Popover>
