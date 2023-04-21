@@ -2,7 +2,7 @@ import { Button, Form, Input, Popover } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-
+import GroupFormation from './GroupFormation';
 
 const AddCase = () => {
   const [visible, setVisible] = useState(false);
@@ -27,6 +27,9 @@ const content = (
               </Form.Item>
               <Form.Item label="Input 3">
                 <Input />
+              </Form.Item>
+              <Form.Item label="I">
+                <GroupFormation />
               </Form.Item>
               <Form.Item label="Input 4">
                 <Input />
@@ -74,7 +77,7 @@ const content = (
               </Form.Item>
               <div style={{ textAlign: 'right' }}>
                 <Button style={{ marginRight: 8 }}>
-                  Add
+                  Open
                 </Button>
                 <Button onClick={handleCancle}>
                   Cancel
