@@ -22,15 +22,71 @@ const chartData = [
     { name: 'Jun', value: 200 },
   ];
 
+  const sample = [
+    {
+        key: "1",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+      {
+        key: "2",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+      {
+        key: "3",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+      {
+        key: "4",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+      {
+        key: "5",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+      {
+        key: "5",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+      {
+        key: "6",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+      {
+        key: "7",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+      {
+        key: "8",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+      {
+        key: "9",
+        name: "Yon Brown",
+        date: '22/22/22',
+        reportBody: 'the report body here'
+      },
+  ]
+
 function OverviewDashboard() {
-    const [data, setData] = useState([
-        {
-          key: "1",
-          name: "Yon Brown",
-          date: '22/22/22',
-          reportBody: 'the report body here'
-        },
-      ]);
+    const [data, setData] = useState(sample);
   return (
     <div className="overview-container">
         <div className='card-container'>

@@ -11,6 +11,7 @@ import MyProfile from "./Profile";
 import AppBarMU from "./AppBarMU";
 import Main from "./Main";
 import {BsFillPersonBadgeFill} from 'react-icons/bs'
+import CampaignIcon from '@mui/icons-material/Campaign';
 import CivilianPost from "./Post";
 
 const { Content, Footer } = Layout;
@@ -50,17 +51,23 @@ const items = [
         },
         {
           key: '6',
+          icon: <CampaignIcon />,
+          label: 'Complains',
+          link: '/complains'
+        },
+        {
+          key: '7',
           icon: <BsFillPersonBadgeFill />,
           label: <CivilianPost />,
           link: '/civilian'
         },
         {
-          key: '7',
+          key: '8',
           icon: <CgProfile />,
           label: <MyProfile />,
         },
         {
-          key: '8',
+          key: '9',
           icon: <TbLogout />,
           label: 'Logout',
         },

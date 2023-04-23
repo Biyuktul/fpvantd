@@ -3,6 +3,7 @@ import Incident from './Incident';
 import CaseTable from "./CaseTable";
 import ReportPage from './ReportPage';
 import Criminal from "./Criminal";
+import ComplainPage from "./ComplainPage";
 const data = [
   { 
     id: 1,
@@ -121,6 +122,7 @@ function Main() {
             <Route path='/criminal_records' element={<Criminal />}></Route>
             <Route path='/incidents' element={<Incident/>}></Route>
             <Route path="/reports" element={<ReportPage />}> </Route>
+            <Route path="/complains" element={<ComplainPage />} ></Route>
         </Routes>
     </div>
   );
