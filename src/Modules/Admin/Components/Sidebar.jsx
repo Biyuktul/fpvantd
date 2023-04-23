@@ -5,10 +5,10 @@ import { Switch } from 'antd';
 
 const { Sider } = Layout;
 
-const Sidebar = ({collapsed, setCollapsed, items}) => {
+const Sidebar = ({items}) => {
 
     return (
-          <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} >
+          <Sider style={{position: 'fixed', height: '100vh'}}>
             <div className='w-full flex justify-center'>
               <img src={Logo} style={{ height: 75, margin: 16 }} alt="logo"/>
             </div>

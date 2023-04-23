@@ -37,7 +37,6 @@ const EditableCell = ({
 const EditableTable = ({data, setData}) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
-  
 
   const isEditing = (record) => record.key === editingKey;
 
@@ -76,23 +75,18 @@ const EditableTable = ({data, setData}) => {
 
   const columns = [
         {
-          title: "Report Id",
+          title: "Officer Name",
           dataIndex: "name",
           editable: false,
         },
         {
-          title: "Sent Date",
+          title: "Post Date",
           dataIndex: "date",
           editable: false,
         },
         {
-          title: "Sender Name",
-          dataIndex: "name",
-          editable: false,
-        },
-        { 
-          title: "Report Body",
-          dataIndex: "reportBody",
+          title: "Post Body",
+          dataIndex: "postBody",
           editable: true,
         },
         {
@@ -116,7 +110,7 @@ const EditableTable = ({data, setData}) => {
                 </Button>{"   "}
                 |{"   "}
                 <Popconfirm
-                  title="Are you sure to delete this report?"
+                  title="Are you sure to delete this post?"
                   okButtonProps={{style:{backgroundColor: '#159895'}}}
                   
                   onConfirm={() => {

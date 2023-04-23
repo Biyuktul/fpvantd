@@ -4,7 +4,8 @@ import { GiPoliceOfficerHead, GiHandcuffs } from 'react-icons/gi';
 import { MdLocalPolice } from 'react-icons/md';
 import { FaFlag } from 'react-icons/fa';
 import '../styles/style.css';
-import ReportTable from './ReportTable';
+import EditableTable from './ReportTable';
+import { useState } from 'react';
 
 const card1_info = "open cases"
 const card2_info = "closed cases"
@@ -22,6 +23,14 @@ const chartData = [
   ];
 
 function OverviewDashboard() {
+    const [data, setData] = useState([
+        {
+          key: "1",
+          name: "Yon Brown",
+          date: '22/22/22',
+          reportBody: 'the report body here'
+        },
+      ]);
   return (
     <div className="overview-container">
         <div className='card-container'>
@@ -40,7 +49,10 @@ function OverviewDashboard() {
             
         </div>
         <div className='w-full report-container2'>
-            <ReportTable />
+            <EditableTable 
+            data={data} 
+            setData={setData}
+            />          
         </div>
     </div>
   );
