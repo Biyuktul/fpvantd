@@ -8,7 +8,7 @@ import { PieChartOutlined } from '@ant-design/icons';
 import {CgProfile} from 'react-icons/cg'
 import {HiOutlineDocumentReport} from 'react-icons/hi'
 import MyProfile from "./Profile";
-import AppBarMU from "./AppBarMU";
+import AppBarMU from "./AppBar";
 import Main from "./Main";
 import {BsFillPersonBadgeFill} from 'react-icons/bs'
 import CampaignIcon from '@mui/icons-material/Campaign';

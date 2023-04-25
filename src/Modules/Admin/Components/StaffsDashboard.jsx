@@ -1,4 +1,4 @@
-import EmployeeTable from './EmployeeTable';
+import StaffTable from './StaffTable';
 import PopupFormButton from './FormPopup';
 import PermissionBox from './PermissionBox';
 
@@ -31,15 +31,9 @@ function StaffsDashboard() {
     
     
     return (
-      <div className='staff-container'>
-            <div className='employee-table-container'>
-            <EmployeeTable employees={employees} />
-            </div>
-            <div className='permission-box-container'>
-                <PermissionBox />
-            </div>
-            <div className='button-container'>
-                <PopupFormButton text={"Add Officers"} formTitle={"New Officer Registration Form"}></PopupFormButton>
+      <div className=''>
+            <div className=''>
+            <StaffTable employees={employees} />
             </div>
       </div>
     );

@@ -1,4 +1,4 @@
-.overview-container {
+.admin-overview-container {
     display: grid;
     grid-template-rows: auto 2fr 1fr;
     grid-template-columns: auto;
@@ -7,10 +7,9 @@
         "chart report"
         "log-table log-table";
     height: 100vh;
-    
 }
 
-.card-container {
+.admin-card-container {
     grid-area: card-container;
     display: flex;
     justify-content: space-around;
@@ -20,7 +19,7 @@
     margin-right: 25px;
 }
 
-.chart-container2 {
+.admin-chart-container2 {
     grid-area: chart;
     margin-top: 30px;
     height: fit-content;
@@ -28,7 +27,7 @@
     margin-right: 20px;
 }
 
-.report-container2 {
+.admin-report-container2 {
     grid-area: report;
     margin-top: 30px;
     width: auto;
@@ -36,7 +35,7 @@
     margin-right: 45px;
 }
 
-.log-container {
+.admin-log-container {
     width: 100%;
     margin-top: 30px;
     grid-area: log-table;

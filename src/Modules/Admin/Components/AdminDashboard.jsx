@@ -1,11 +1,12 @@
 import Main from './Main';
-import AppBar from './AppBar';
+import AppBarMU from "./AppBar";
 import Sidebar from './Sidebar';
 import { useState } from 'react';
 import { Layout } from 'antd';
 import {MdOutlineGroups} from 'react-icons/md'
 import {TbReport, TbSettings, TbLogout} from 'react-icons/tb'
 import { PieChartOutlined } from '@ant-design/icons';
+import MyProfile from './Profile';
 
 
 const { Content, Footer } = Layout;
@@ -22,28 +23,12 @@ const items = [
     label: 'Staffs',
     link: '/staffs'
   },
-  {
-    key: '3',
-    icon: <TbReport />,
-    label: 'Reports',
-    link: '/reports'
-  },
+
   {
     key: '4',
     icon: <TbSettings />,
-    label: 'Settings',
-    children: [
-      {
-        key: '5',
-        label: 'Preference Settings',
-        link: '/preference-settings'
-      },
-      {
-        key: '6',
-        label: 'Profile Settings',
-        link: '/profile-settings'
-      }
-    ]
+    label: <MyProfile />,
+    
   },
   {
     key: '7',
@@ -62,16 +47,14 @@ const AdminDashboard = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} items={items}/>
-      <Layout className="site-layout">
-        <AppBar />
-        <Content style={mainStyle}>
+      <Layout className="site-layout" style={{backgroundColor: '#D8D8FF',paddingLeft: '200px', height: '100%'}}>
+        <AppBarMU />
+        <Content style={{height: '100%', overflow: 'auto'}}>
           <div style={{ padding: 0, minHeight: 360 }}>
-            <Main />
+            {<Main />}
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center', backgroundColor: '#002140',height: 40, marginTop: 70, color: "white"}}>
-          PSRMS ©2023
-        </Footer>
+        
       </Layout>
     </Layout>
   );

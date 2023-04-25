@@ -50,7 +50,7 @@ const PopupFormButton = ({text, formTitle, selectedEmployee}) => {
 
   return (
     <>
-      <Button onClick={() => setVisible(true)}>{text}</Button>
+      <Button style={{backgroundColor: '#05BFDB'}} onClick={() => setVisible(true)}>{text}</Button>
       <Modal
         visible={visible}
         title={formTitle}

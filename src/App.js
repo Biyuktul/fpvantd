@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <OfficerDashboard />
+        <AdminDashboard />
       </div>
     </BrowserRouter>
   );
