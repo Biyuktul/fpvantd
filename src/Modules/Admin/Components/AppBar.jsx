@@ -3,7 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { BellOutlined, MessageOutlined } from '@ant-design/icons';
-
+import { useLocation } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -68,6 +68,18 @@ export default function AppBarMU() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [notifications, setNotifications] = React.useState([]);
   const [messages, setMessages] = React.useState([]);
+  const location = useLocation();
+
+  let pageText;
+
+  if (location.pathname === "/") {
+    pageText = 'Overview';
+  } else if (location.pathname === "/staffs") {
+    pageText = 'Staff Management';
+  } else {
+    pageText = "Page not found";
+  }
+
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -168,7 +180,7 @@ export default function AppBarMU() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Overview
+            {pageText}
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />

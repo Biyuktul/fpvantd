@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Button, Modal, Form, Input } from 'antd';
+import { Button, Modal, Form, Input, Upload, Select } from 'antd';
+const { Option } = Select;
 
 const PopupFormButton = ({text, formTitle, selectedEmployee}) => {
   const [visible, setVisible] = useState(false);
@@ -10,9 +11,12 @@ const PopupFormButton = ({text, formTitle, selectedEmployee}) => {
       form.setFieldsValue({
         id: selectedEmployee.id,
         name: selectedEmployee.name,
-        email: selectedEmployee.email,
-        department: selectedEmployee.department,
-        salary: selectedEmployee.salary,
+        phone: selectedEmployee.phone,
+        role: selectedEmployee.role,
+        logon_name: selectedEmployee.logon_name,
+        password: selectedEmployee.password,
+        address: selectedEmployee.address,
+        rank: selectedEmployee.rank,
       });
     }
   }, [selectedEmployee, form]);
@@ -62,6 +66,8 @@ const PopupFormButton = ({text, formTitle, selectedEmployee}) => {
           <Button
             key="submit"
             htmlType="submit"
+            type='primary'
+            style={{backgroundColor: '#05BFDB'}}
             form="myForm"
             onClick={handleOk}
           >
@@ -76,128 +82,105 @@ const PopupFormButton = ({text, formTitle, selectedEmployee}) => {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Input 1"
-            name="id"
-            rules={[
-              {
-                required: true,
-                message: 'Please input input 1!',
-              },
-            ]}
-          >
-            <Input/>
-          </Form.Item>
-
-          <Form.Item
-            label="Input 2"
+            label="Full Name"
             name="name"
             rules={[
               {
                 required: true,
-                message: 'Please input input 2!',
+                message: 'Please fill Full Name!',
               },
             ]}
           >
             <Input/>
-          </Form.Item>
-          <Form.Item
-            label="Input 3"
-            name="email"
-            rules={[
-              {
-                required: true,
-                message: 'Please input input 3!',
-              },
-            ]}
-          >
-            <Input/>
-          </Form.Item>
-          <Form.Item
-            label="Input 4"
-            name="department"
-            rules={[
-              {
-                required: true,
-                message: 'Please input input 4!',
-              },
-            ]}
-          >
-            <Input/>
-          </Form.Item>
-          <Form.Item
-            label="Input 5"
-            name="salary"
-            rules={[
-              {
-                required: true,
-                message: 'Please input input 5!',
-              },
-            ]}
-          >
-            <Input/>
-          </Form.Item>
-          <Form.Item
-            label="Input 6"
-            name="input6"
-            rules={[
-              {
-                required: true,
-                message: 'Please input input 6!',
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Input 7"
-            name="input7"
-            rules={[
-              {
-                required: true,
-                message: 'Please input input 7!',
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Input 8"
-            name="input8"
-            rules={[
-              {
-                required: true,
-                message: 'Please input input 8!',
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Input 9"
-            name="input9"
-            rules={[
-              {
-                required: true,
-                message: 'Please input input 9!',
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Input 10"
-            name="input10"
-            rules={[
-              {
-                required: true,
-                message: 'Please input input 10!',
-              },
-            ]}
-          >
-            <Input />
           </Form.Item>
 
-          {/* Add more Form.Item components for additional inputs */}
+          <Form.Item
+            label="Phone Number"
+            name="phone"
+            rules={[
+              {
+                required: true,
+                message: 'Please fill Phone Number!',
+              },
+            ]}
+          >
+            <Input/>
+          </Form.Item>
+          <Form.Item
+            label="Logon Name"
+            name="logon_name"
+            rules={[
+              {
+                required: true,
+                message: 'please fill Logon Name!',
+              },
+            ]}
+          >
+            <Input/>
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'Please fill password!',
+              },
+            ]}
+          >
+            <Input/>
+          </Form.Item>
+          <Form.Item
+            label="Address"
+            name="address"
+            rules={[
+              {
+                required: true,
+                message: 'Please fill Address!',
+              },
+            ]}
+          >
+            <Input/>
+          </Form.Item>
+          <Form.Item
+            label="Role"
+            name="role"
+            rules={[
+              {
+                required: true,
+                message: 'Please fill Role!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label='Current Status'
+            name='status'
+          >
+            <Select  defaultValue={'Active'} disabled>
+              <Option value="1">Active</Option>
+              <Option value="2">Case Assigned</Option>
+              <Option value="3">Training</Option>
+              <Option value="4">Sick Leave</Option>
+              <Option value="5">Suspended</Option>
+              <Option value="6">Retired</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label="Rank"
+            name="rank"
+          >
+          <Input />
+          </Form.Item>
+          <Form.Item
+            label="Photo"
+            name="photo"
+          >
+            <Upload>
+              <Button>Upload</Button>
+            </Upload>
+          </Form.Item>
         </Form>
       </Modal>
     </>

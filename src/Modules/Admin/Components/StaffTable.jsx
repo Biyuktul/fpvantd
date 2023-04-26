@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Table, Image, Button } from "antd";
-import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
+import { Table, Image } from "antd";
 import PopupFormButton from './FormPopup';
 import ConfirmPopup from './ConfirmPopup';
 import OfficerDetail from './OfficerDetailPopup';
@@ -43,14 +42,29 @@ function StaffTable({ employees }) {
       key: 'name',
     },
     {
-      title: 'Department',
-      dataIndex: 'department',
-      key: 'department',
+      title: 'Role',
+      dataIndex: 'role',
+      key: 'role',
     },
     {
-      title: 'Salary',
-      dataIndex: 'salary',
-      key: 'salary',
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Rank',
+      dataIndex: 'rank',
+      key: 'rank',
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+    },
+    {
+      title: 'Phone Number',
+      dataIndex: 'phone',
+      key: 'phone',
       className: 'salary',
     },
     {
@@ -64,7 +78,9 @@ function StaffTable({ employees }) {
             formTitle={"Edit Officer Form"} 
             selectedEmployee={record}
           />
+          {'         '}
           <ConfirmPopup selectedEmployee={record} />
+          {'         '}
           <OfficerDetail selectedEmployee={record} />
         </>
       ),
@@ -90,7 +106,6 @@ function StaffTable({ employees }) {
       <PopupFormButton text={"Add Officers"} formTitle={"New Officer Registration Form"}></PopupFormButton>
       </div>
       
-
       <Table
         columns={columns}
         dataSource={filteredEmployees}

@@ -21,19 +21,12 @@
 
 .admin-chart-container2 {
     grid-area: chart;
-    margin-top: 30px;
     height: fit-content;
     margin-left: 40px;
-    margin-right: 20px;
+    
 }
 
-.admin-report-container2 {
-    grid-area: report;
-    margin-top: 30px;
-    width: auto;
-    height: fit-content;
-    margin-right: 45px;
-}
+
 
 .admin-log-container {
     width: 100%;
@@ -41,20 +34,6 @@
     grid-area: log-table;
     padding-left: 30px;
     padding-right: 30px;
-}
-
-/* Card Section */
-.card {
-    display: grid;
-    justify-content: center;
-    height: 8rem;
-    width: 18rem;
-    border-radius: .3rem;
-    box-shadow: 5px 10px 25px 2px rgb(95, 95, 95);
-    transition: transform 0.3s ease;
-    text-align: center;
-    background-color: #001529;
-    color: aliceblue;
 }
 
 .card-header *{
@@ -69,5 +48,3 @@
 .card:focus-visible {
   transform: translateY(-10px);
 }
-
-/* End of Card Section */

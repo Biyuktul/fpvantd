@@ -1,8 +1,7 @@
 
 import Chart from './Chart';
-import Report from './Report';
 import ActivityLog from './ActivityLog';
-import { GiPoliceOfficerHead, GiHandcuffs } from 'react-icons/gi';
+import { GiPoliceOfficerHead } from 'react-icons/gi';
 import { MdLocalPolice } from 'react-icons/md';
 import { FaFlag } from 'react-icons/fa';
 import '../styles/Main.css';
@@ -46,10 +45,7 @@ function OverviewDashboard() {
         <div className='admin-chart-container2'>
             <Chart />
         </div>
-        <div className='admin-report-container2'>
-            <Report />
-        </div>
-        <div className='admin-log-container'>
+        <div className= 'mt-0 mr-10'>
             <ActivityLog />
         </div>
     </div>

@@ -1,4 +1,5 @@
 import '../styles/Report.css';
+import { Divider } from 'antd';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -85,8 +86,8 @@ const CustomTooltip = ({ active, payload, label }) => {
 function Chart() {
 
     return (
-        
-            // <ResponsiveContainer width="100%" aspect={3}>
+        <div style={{width: '500px'}}>
+        <Divider>Graph</Divider>
         <div className="chart-container">
             <BarChart
                 width={450}
@@ -107,7 +108,7 @@ function Chart() {
             <Bar dataKey="pv" barSize={40} fill="#1d1d2c" />
             </BarChart>
         </div>
-            // </ResponsiveContainer>
+            </div>
     );
   }
 

@@ -63,22 +63,27 @@ const OfficerDetail = ({ selectedEmployee }) => {
             <br />
             <Row>
               <Col span={12}>
-                <Text strong>Email:</Text>
+                <Text strong>Phone number:</Text>
                 <br />
-                <Text>{selectedEmployee.email}</Text>
+                <Text>{selectedEmployee.phone}</Text>
               </Col>
               <Col span={12}>
-                <Text strong>Department:</Text>
+                <Text strong>Role:</Text>
                 <br />
-                <Text>{selectedEmployee.department}</Text>
+                <Text>{selectedEmployee.role}</Text>
               </Col>
             </Row>
             <br />
             <Row>
               <Col span={12}>
-                <Text strong>Salary:</Text>
+                <Text strong>Logon Name:</Text>
                 <br />
-                <Text>{selectedEmployee.salary}</Text>
+                <Text>{selectedEmployee.logon_name}</Text>
+              </Col>
+              <Col span={12}>
+                <Text strong>Status:</Text>
+                <br />
+                <Text>{selectedEmployee.status}</Text>
               </Col>
             </Row>
             <br />

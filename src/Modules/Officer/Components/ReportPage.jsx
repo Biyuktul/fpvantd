@@ -1,4 +1,3 @@
-import Report from '../../Admin/Components/Report';
 import SquareCard from './SquareCard';
 import { GiPoliceOfficerHead, GiHandcuffs } from 'react-icons/gi';
 import { MdLocalPolice } from 'react-icons/md';
